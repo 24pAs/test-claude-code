@@ -12,13 +12,31 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm">
-      <nav className="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+    <header
+      className="sticky top-0 z-50 w-full"
+      style={{
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
+        borderBottom: "1px solid rgba(226, 232, 240, 0.5)",
+        backdropFilter: "blur(12px)",
+      }}
+    >
+      <nav className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
         <Link
           href="/"
-          className="text-base font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          className="flex items-center gap-2 transition-opacity hover:opacity-80"
+          style={{ color: "#0F172A" }}
         >
-          TodoApp
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center"
+            style={{ backgroundColor: "#4F46E5" }}
+          >
+            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+          <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: "-0.025em" }}>
+            TodoApp
+          </span>
         </Link>
 
         <ul className="flex items-center gap-1">
@@ -29,11 +47,11 @@ export function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
-                  className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300"
-                      : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
-                  }`}
+                  className="px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
+                  style={{
+                    backgroundColor: isActive ? "#DBEAFE" : "transparent",
+                    color: isActive ? "#4F46E5" : "#475569",
+                  }}
                 >
                   {label}
                 </Link>
