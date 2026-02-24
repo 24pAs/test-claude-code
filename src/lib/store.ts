@@ -31,4 +31,8 @@ export const todoStore = {
   delete(id: string): boolean {
     return todos.delete(id);
   },
+
+  deleteAll(): void {
+    todos.clear();
+  },
 };
