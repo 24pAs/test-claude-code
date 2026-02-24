@@ -25,7 +25,10 @@ export function TodoForm({ onCreate }: TodoFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form
+      onSubmit={handleSubmit}
+      className="flex gap-3 p-2 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-shadow focus-within:shadow-md focus-within:ring-2 focus-within:ring-indigo-500/20"
+    >
       <input
         type="text"
         value={title}
@@ -33,13 +36,18 @@ export function TodoForm({ onCreate }: TodoFormProps) {
         placeholder="할 일을 입력하세요..."
         maxLength={200}
         disabled={submitting}
-        className="flex-1 px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+        className="flex-1 bg-transparent border-none focus:ring-0 px-4 py-3 text-base placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100 outline-none disabled:opacity-50"
       />
       <button
         type="submit"
         disabled={!title.trim() || submitting}
-        className="px-4 py-2 text-sm font-medium rounded-lg bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        style={{
+          backgroundColor: "#4F46E5",
+          boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.2)",
+        }}
       >
+        <span className="material-symbols-outlined" style={{ fontSize: 20 }}>add</span>
         {submitting ? "추가 중..." : "추가"}
       </button>
     </form>

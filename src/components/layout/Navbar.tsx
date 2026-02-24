@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "/", label: "홈" },
@@ -10,55 +11,67 @@ const navLinks = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
 
   return (
-    <header
-      className="sticky top-0 z-50 w-full"
-      style={{
-        backgroundColor: "rgba(255, 255, 255, 0.7)",
-        borderBottom: "1px solid rgba(226, 232, 240, 0.5)",
-        backdropFilter: "blur(12px)",
-      }}
-    >
-      <nav className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center gap-2 transition-opacity hover:opacity-80"
-          style={{ color: "#0F172A" }}
-        >
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+      <nav className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        {/* 로고 */}
+        <Link href="/" className="flex items-center gap-2">
           <div
             className="w-8 h-8 rounded-lg flex items-center justify-center"
             style={{ backgroundColor: "#4F46E5" }}
           >
-            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
+            <span className="material-symbols-outlined text-white" style={{ fontSize: 20 }}>
+              check_circle
+            </span>
           </div>
-          <span style={{ fontWeight: 700, fontSize: 20, letterSpacing: "-0.025em" }}>
+          <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">
             TodoApp
           </span>
         </Link>
 
-        <ul className="flex items-center gap-1">
+        {/* 네비 링크 + 다크 토글 */}
+        <div className="flex items-center gap-6">
           {navLinks.map(({ href, label }) => {
             const isActive =
               href === "/" ? pathname === "/" : pathname.startsWith(href);
-            return (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="px-4 py-1.5 rounded-full text-sm font-medium transition-colors"
-                  style={{
-                    backgroundColor: isActive ? "#DBEAFE" : "transparent",
-                    color: isActive ? "#4F46E5" : "#475569",
-                  }}
-                >
-                  {label}
-                </Link>
-              </li>
+            return isActive ? (
+              <span
+                key={href}
+                className="text-sm font-semibold px-4 py-1.5 rounded-full"
+                style={{ backgroundColor: "#EFF6FF", color: "#4F46E5" }}
+              >
+                {label}
+              </span>
+            ) : (
+              <Link
+                key={href}
+                href={href}
+                className="text-sm font-medium text-slate-500 hover:text-indigo-600 dark:text-slate-400 dark:hover:text-white transition-colors"
+              >
+                {label}
+              </Link>
             );
           })}
-        </ul>
+
+          <button
+            onClick={() => setDark((d) => !d)}
+            className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300"
+            aria-label="다크 모드 전환"
+          >
+            <span className="material-symbols-outlined dark:hidden" style={{ fontSize: 22 }}>
+              dark_mode
+            </span>
+            <span className="material-symbols-outlined hidden dark:block" style={{ fontSize: 22 }}>
+              light_mode
+            </span>
+          </button>
+        </div>
       </nav>
     </header>
   );
