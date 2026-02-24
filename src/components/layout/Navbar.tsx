@@ -26,7 +26,7 @@ export function Navbar() {
             className="w-8 h-8 rounded-lg flex items-center justify-center"
             style={{ backgroundColor: "#4F46E5" }}
           >
-            <span className="material-symbols-outlined text-white" style={{ fontSize: 20 }}>
+            <span className="material-symbols-rounded text-white" style={{ fontSize: 20 }}>
               check_circle
             </span>
           </div>
@@ -64,10 +64,10 @@ export function Navbar() {
             className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300"
             aria-label="다크 모드 전환"
           >
-            <span className="material-symbols-outlined dark:hidden" style={{ fontSize: 22 }}>
+            <span className="material-symbols-rounded dark:hidden" style={{ fontSize: 22 }}>
               dark_mode
             </span>
-            <span className="material-symbols-outlined hidden dark:block" style={{ fontSize: 22 }}>
+            <span className="material-symbols-rounded hidden dark:block" style={{ fontSize: 22 }}>
               light_mode
             </span>
           </button>

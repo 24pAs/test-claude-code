@@ -70,14 +70,11 @@ export function TodoPage() {
     todos.length > 0 ? Math.round((completedCount / todos.length) * 100) : 0;
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-12 lg:py-20">
+    <div className="max-w-2xl mx-auto px-6 py-12">
       {/* 헤더 */}
       <header className="mb-10">
-        <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-2 flex items-center gap-3">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">
           Todo List
-          <span className="text-xs font-normal px-2 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-full border border-slate-200 dark:border-slate-700">
-            {todos.length}
-          </span>
         </h1>
         <p className="text-slate-500 dark:text-slate-400">
           {todos.length === 0
@@ -87,9 +84,9 @@ export function TodoPage() {
       </header>
 
       {/* 입력 폼 */}
-      <div className="mb-12">
+      <section className="mb-8">
         <TodoForm onCreate={handleCreate} />
-      </div>
+      </section>
 
       {/* 목록 */}
       {loading ? (
@@ -99,52 +96,49 @@ export function TodoPage() {
       ) : error ? (
         <p className="text-center text-sm text-red-500 py-8">{error}</p>
       ) : (
-        <>
+        <section className="space-y-3">
           <TodoList todos={todos} onToggle={handleToggle} onDelete={handleDelete} />
 
           {todos.length > 0 && (
             <>
-              {/* 통계 섹션 */}
-              <div className="mt-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm text-slate-500 dark:text-slate-400">
-                    남은 항목{" "}
-                    <span className="font-semibold text-slate-900 dark:text-slate-100">
-                      {remainingCount}개
-                    </span>
-                  </span>
-                  <span className="text-sm text-slate-500 dark:text-slate-400">
-                    완료율{" "}
-                    <span className="font-semibold text-slate-900 dark:text-slate-100">
-                      {completionRate}%
-                    </span>{" "}
-                    ({completedCount}/{todos.length} 항목)
-                  </span>
+              {/* 남은 항목 + 모두 삭제 */}
+              <div className="flex items-center justify-between pt-6 px-2 text-sm">
+                <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                  <span className="font-semibold" style={{ color: "#4F46E5" }}>{remainingCount}개</span> 남음
                 </div>
-                <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5">
-                  <div
-                    className="h-1.5 rounded-full transition-all"
-                    style={{ width: `${completionRate}%`, backgroundColor: "#4F46E5" }}
-                  />
-                </div>
-                <div className="mt-2 flex items-center gap-1.5">
-                  <span className="text-xs font-medium" style={{ color: "#4F46E5" }}>진행중</span>
-                  <span className="text-xs text-slate-400 dark:text-slate-500">· 파이팅!</span>
-                </div>
-              </div>
-
-              {/* 모두 삭제 */}
-              <div className="mt-4 flex justify-end">
                 <button
                   onClick={handleDeleteAll}
-                  className="px-4 py-2 text-sm font-medium text-red-500 hover:text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                  className="flex items-center gap-1 font-medium text-slate-400 hover:text-red-500 dark:text-slate-500 dark:hover:text-red-400 transition-colors"
                 >
+                  <span className="material-symbols-rounded" style={{ fontSize: 18 }}>delete_sweep</span>
                   모두 삭제
                 </button>
               </div>
+
+              {/* 통계 2열 카드 */}
+              <div className="mt-12 grid grid-cols-2 gap-4">
+                <div className="p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/30">
+                  <div className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color: "#4F46E5" }}>
+                    완료율
+                  </div>
+                  <div className="flex items-end gap-2">
+                    <span className="text-2xl font-bold text-slate-900 dark:text-white">{completionRate}%</span>
+                    <span className="text-xs text-indigo-400 dark:text-indigo-500 mb-1">{completedCount}/{todos.length} 항목</span>
+                  </div>
+                </div>
+                <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl border border-emerald-100 dark:border-emerald-800/30">
+                  <div className="text-xs font-bold uppercase tracking-wider mb-1 text-emerald-600 dark:text-emerald-400">
+                    오늘의 목표
+                  </div>
+                  <div className="flex items-end gap-2">
+                    <span className="text-2xl font-bold text-slate-900 dark:text-white">진행중</span>
+                    <span className="text-xs text-emerald-400 dark:text-emerald-500 mb-1">파이팅!</span>
+                  </div>
+                </div>
+              </div>
             </>
           )}
-        </>
+        </section>
       )}
     </div>
   );

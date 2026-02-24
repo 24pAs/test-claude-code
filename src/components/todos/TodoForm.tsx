@@ -25,10 +25,7 @@ export function TodoForm({ onCreate }: TodoFormProps) {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex gap-3 p-2 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-shadow focus-within:shadow-md focus-within:ring-2 focus-within:ring-indigo-500/20"
-    >
+    <form onSubmit={handleSubmit} className="flex gap-3">
       <input
         type="text"
         value={title}
@@ -36,18 +33,18 @@ export function TodoForm({ onCreate }: TodoFormProps) {
         placeholder="할 일을 입력하세요..."
         maxLength={200}
         disabled={submitting}
-        className="flex-1 bg-transparent border-none focus:ring-0 px-4 py-3 text-base placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-900 dark:text-slate-100 outline-none disabled:opacity-50"
+        className="flex-1 h-12 px-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 shadow-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all disabled:opacity-50"
       />
       <button
         type="submit"
         disabled={!title.trim() || submitting}
-        className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+        className="flex items-center gap-2 px-6 rounded-xl font-semibold text-white transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
         style={{
           backgroundColor: "#4F46E5",
-          boxShadow: "0 10px 25px -5px rgba(79, 70, 229, 0.2)",
+          boxShadow: "0 10px 25px -5px rgba(99, 102, 241, 0.2)",
         }}
       >
-        <span className="material-symbols-outlined" style={{ fontSize: 20 }}>add</span>
+        <span className="material-symbols-rounded" style={{ fontSize: 20 }}>add</span>
         {submitting ? "추가 중..." : "추가"}
       </button>
     </form>
