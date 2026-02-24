@@ -29,3 +29,8 @@ export async function POST(request: NextRequest) {
   const todo = todoStore.create(trimmed);
   return NextResponse.json(todo, { status: 201 });
 }
+
+export async function DELETE() {
+  todoStore.deleteAll();
+  return new NextResponse(null, { status: 204 });
+}
