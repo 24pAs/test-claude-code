@@ -1,36 +1,28 @@
 export function Footer() {
   return (
-    <footer className="mt-auto py-12 border-t border-slate-200 dark:border-slate-800">
-      <div className="max-w-5xl mx-auto px-6 text-center">
-        <p className="text-sm text-slate-400 dark:text-slate-500 flex items-center justify-center gap-1">
-          Made with{" "}
-          <span
-            className="material-symbols-outlined text-red-500"
-            style={{
-              fontSize: 16,
-              fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20",
-            }}
-          >
-            favorite
-          </span>{" "}
-          for productivity
-        </p>
-        <div className="mt-4 flex justify-center gap-6 opacity-60">
+    <footer className="mt-20 py-10 border-t border-slate-200 dark:border-slate-800">
+      <div className="max-w-4xl mx-auto px-6 flex flex-col items-center gap-4">
+        <div className="flex items-center gap-4 text-slate-400 dark:text-slate-500 text-sm">
+          <a href="#" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            이용약관
+          </a>
+          <span>•</span>
+          <a href="#" className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            개인정보처리방침
+          </a>
+          <span>•</span>
           <a
             href="https://github.com/24pAs/test-claude-code"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:opacity-100 transition-opacity text-xs font-bold text-slate-500"
+            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           >
             GitHub
           </a>
-          <a href="#" className="hover:opacity-100 transition-opacity text-xs font-bold text-slate-500">
-            LinkedIn
-          </a>
-          <a href="#" className="hover:opacity-100 transition-opacity text-xs font-bold text-slate-500">
-            Blog
-          </a>
         </div>
+        <p className="text-slate-400 dark:text-slate-500 text-xs">
+          © 2024 TodoApp. Made with Love.
+        </p>
       </div>
     </footer>
   );
