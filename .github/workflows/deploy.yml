@@ -21,8 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Deploy to Vercel
-        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --yes
+      - name: Deploy to Vercel (24pAs personal team)
+        # IMPORTANT: VERCEL_ORG_ID must be set to the personal account team ID (24pAs),
+        # NOT the Planetarium organization ID.
+        # Obtain via: npx vercel link (select 24pAs scope) → .vercel/project.json → orgId
+        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --scope 24pas --yes
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
