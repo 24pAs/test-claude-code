@@ -34,7 +34,7 @@ export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
                 style={{ backgroundColor: "#4F46E5" }}
               >
                 <span
-                  className="material-symbols-outlined text-white"
+                  className="material-symbols-rounded text-white"
                   style={{ fontSize: 30, fontVariationSettings: "'FILL' 1, 'wght' 700, 'GRAD' 0, 'opsz' 24" }}
                 >
                   check
@@ -60,7 +60,7 @@ export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
           >
             사용 팁 알아보기
             <span
-              className="material-symbols-outlined group-hover:translate-x-1 transition-transform"
+              className="material-symbols-rounded group-hover:translate-x-1 transition-transform"
               style={{ fontSize: 16 }}
             >
               arrow_forward
